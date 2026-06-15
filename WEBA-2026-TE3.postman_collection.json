@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "bbf21fdb-e6ab-45f6-a18f-d4a9dc2d0a92",
+		"name": "WEBA-2026-TE3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27969053"
+	},
+	"item": [
+		{
+			"name": "URL invalide (manque l'action)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}",
+					"host": [
+						"{{baseURL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Liste des cours sans les exercices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}?action=courses",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "courses"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Liste des cours avec les exercices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}?action=courses",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "courses"
+						},
+						{
+							"key": "withExercises",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Détails du cours 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}?action=courses&id=1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "courses"
+						},
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ajout d'un cours",
+			"protocolProfileBehavior": {
+				"followOriginalHttpMethod": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Développement web avancé",
+							"type": "default"
+						},
+						{
+							"key": "deadline",
+							"value": "2026-08-01 00:00:00",
+							"type": "default"
+						},
+						{
+							"key": "deadline",
+							"value": "BADDATETIME",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}?action=courses",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "courses"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Suppression du cours 5",
+			"protocolProfileBehavior": {
+				"followOriginalHttpMethod": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}?action=courses&id=5",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "courses"
+						},
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ajout d'un exercice au cours 1",
+			"protocolProfileBehavior": {
+				"followOriginalHttpMethod": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "courseId",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "name",
+							"value": "Créer une API JSON en PHP",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Créer une API simple permettant de gérer des cours et des exercices.",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}?action=exercises",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "exercises"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Suppression de l'exercice 1",
+			"protocolProfileBehavior": {
+				"followOriginalHttpMethod": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}?action=exercises&id=1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "exercises"
+						},
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cours en retard",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}?action=latecourses",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "latecourses"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "IDjiaosudh128eudaj8ih",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost/etml/weba/te3-2026",
+			"type": "default"
+		}
+	]
+}
