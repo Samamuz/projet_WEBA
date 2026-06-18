@@ -116,6 +116,11 @@ class Controller {
         $deadline = null;
         if (isset($_POST["deadline"]) && $_POST["deadline"] != "") {
             $deadline = $_POST["deadline"];
+
+            // Vérifie que la date est valide.
+            if (strtotime($deadline) == false) {
+                return new Response(httpCode: 400);
+            }
         }
 
         $id = $this->model->addCourse($name, $deadline);
