@@ -60,23 +60,23 @@ class Model {
         return $requete->rowCount();
     }
 
-    // Ajoute un exercice (toujours non termine au depart) et retourne son id.
+    //Requête POST : Ajoute un exercice (toujours non termine au depart) et retourne son id.
     public function addExercise($courseId, $name, $description) {
         $requete = $this->db->prepare("INSERT INTO exercise (courseId, name, description, finished) VALUES (:courseId, :name, :description, 0)");
         $requete->execute(array(":courseId" => $courseId, ":name" => $name, ":description" => $description));
         return $this->db->lastInsertId();
     }
 
-    // Supprime un exercice d'apres son id. Retourne le nombre de lignes supprimees.
+    //Requête DEL : Supprime un exercice d'apres son id. Retourne le nombre de lignes supprimees.
     public function deleteExercise($id) {
         $requete = $this->db->prepare("DELETE FROM exercise WHERE id = :id");
         $requete->execute(array(":id" => $id));
         return $requete->rowCount();
     }
 
-    // Retourne les cours en retard : deadline renseignee (non null) ET deja passee.
-    public function getLateCourses(): array {
-        $requete = $this->db->query("SELECT id, name, deadline FROM course WHERE deadline IS NOT NULL AND deadline < NOW()");
+    //Requête GET : Retourne les cours en retard : deadline renseignee (non null) ET deja passee.
+    public function getLateCourses() {
+        $requete = $this->db->query("SELECT id, name, deadline FROM course WHERE deadline IS NOT NULL AND deadline < NOW()");  
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }
 

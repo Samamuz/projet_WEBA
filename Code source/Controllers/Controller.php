@@ -105,7 +105,7 @@ class Controller {
     }
 
     // POST ?action=courses -> creation d'un cours.
-    public function addCourse(): Response {
+    public function addCourse() {
         // Le nom est obligatoire.
         if (!isset($_POST["name"]) || $_POST["name"] == "") {
             return new Response(httpCode: 400);
@@ -126,7 +126,7 @@ class Controller {
     }
 
     // DELETE ?action=courses&id=X -> suppression d'un cours (+ ses exercices en cascade).
-    public function deleteCourse($id): Response {
+    public function deleteCourse($id) {
         $nbSupprimes = $this->model->deleteCourse($id);
 
         // Aucune ligne supprimee -> l'id n'existait pas -> 404
@@ -141,7 +141,7 @@ class Controller {
     }
 
     // POST ?action=exercises -> creation d'un exercice
-    public function addExercise(): Response {
+    public function addExercise() {
         // Les trois parametres sont obligatoires.
         if (!isset($_POST["courseId"]) || $_POST["courseId"] == "") {
             return new Response(httpCode: 400);
@@ -170,7 +170,7 @@ class Controller {
     }
 
     // DELETE ?action=exercises&id=X -> suppression d'un exercice.
-    public function deleteExercise($id): Response {
+    public function deleteExercise($id) {
         $nbSupprimes = $this->model->deleteExercise($id);
 
         if ($nbSupprimes == 0) {
@@ -183,7 +183,7 @@ class Controller {
     }
 
     // GET ?action=latecourses -> cours en retard + nombre d'exercices restants.
-    public function getLateCourses(): Response {
+    public function getLateCourses() {
         $cours = $this->model->getLateCourses();
 
         $resultat = array();
